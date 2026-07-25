@@ -1,0 +1,50 @@
+name: Release Snapshort (Windows MSI & Auto-Updater)
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  release-windows:
+    permissions:
+      contents: write
+    runs-on: windows-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+
+      - name: Setup Rust Toolchain
+        uses: dtolnay/rust-toolchain@stable
+
+      - name: Rust Cache
+        uses: swatinem/rust-cache@v2
+        with:
+          workspaces: './src-tauri -> target'
+
+      - name: Install Frontend Dependencies
+        run: npm ci
+        # If npm ci fails due to package-lock mismatches, replace with: npm install
+
+      - name: Build & Publish Tauri Release
+        uses: tauri-apps/tauri-action@v0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          TAURI_SIGNING_PRIVATE_KEY: ${{ secrets.TAURI_SIGNING_PRIVATE_KEY }}
+          TAURI_SIGNING_PRIVATE_KEY_PASSWORD: ${{ secrets.TAURI_SIGNING_PRIVATE_KEY_PASSWORD }}
+        with:
+          tagName: ${{ github.ref_name }}
+          releaseName: 'Snapshort ${{ github.ref_name }}'
+          releaseBody: |
+            ### ⚡ Snapshort Desktop Release (${{ github.ref_name }})
+            Download the Windows installer (`.msi`) below to install Snapshort.
+            
+            *This release includes automated updater artifacts (`latest.json` & `.msi.zip.sig`) for seamless in-app auto-updating.*
+          releaseDraft: false
+          releasePrerelease: false
