@@ -1,0 +1,82 @@
+# ─────────────────────────────────────────────────────────────────────────────
+# Snapshort .gitignore - Comprehensive configuration for Vite + Tauri + Rust
+# ─────────────────────────────────────────────────────────────────────────────
+
+# Node & Frontend Build Outputs
+node_modules/
+dist/
+build/
+.vite/
+.output/
+.nuxt/
+.next/
+*.local
+.cache/
+
+# Logs & Debugging
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+*.trace
+
+# Environment & Local Configuration
+.env
+.env.local
+.env.*.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Tauri & Rust (Cargo) Build Artifacts
+target/
+src-tauri/target/
+src-tauri/gen/
+**/*.rs.bk
+*.pdb
+*.d.ts.map
+*.js.map
+
+# IDEs & Editor Directories
+.idea/
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+*~
+.*.swp
+*.bak
+*.tmp
+
+# Operating System & System Files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+desktop.ini
+$RECYCLE.BIN/
+
+# Project-Specific & Workspace Scratch / Tool Files
+.commandcode/
+.gemini/
+reference/
+scratch/
+test_exports/
+docs/
+
+# Avoid committing locally generated test snapshots in project root
+*_Snapshot.md
+*_Snapshot.xml
+*_Snapshot.txt

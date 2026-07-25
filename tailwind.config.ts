@@ -1,0 +1,161 @@
+import type { Config } from "tailwindcss";
+
+// All visual values are CSS custom properties set in index.css.
+// Tailwind only needs to map semantic names to var() references.
+// The .dark class on <html> swaps variable values; no JS config needed.
+
+export default {
+  content: ["./index.html", "./src/**/*.{ts,tsx}"],
+  darkMode: "class",
+  theme: {
+    extend: {
+      colors: {
+        canvas: "var(--color-canvas)",
+        surface: "var(--color-surface)",
+        elevated: "var(--color-elevated)",
+        field: "var(--color-field)",
+        overlay: "var(--color-overlay)",
+        ink: "var(--color-ink)",
+        muted: "var(--color-muted)",
+        faint: "var(--color-faint)",
+        hairline: "var(--color-hairline)",
+        sidebar: "var(--color-sidebar)",
+        "sidebar-border": "var(--color-sidebar-border)",
+        accent: {
+          DEFAULT: "var(--color-accent)",
+          foreground: "var(--color-accent-foreground)",
+          soft: "var(--color-accent-soft)",
+          hover: "var(--color-accent-hover)",
+          muted: "var(--color-accent-muted)",
+        },
+        success: "var(--color-success)",
+        warning: "var(--color-warning)",
+        danger: "var(--color-danger)",
+      },
+      fontFamily: {
+        sans: [
+          "Inter",
+          "-apple-system",
+          "BlinkMacSystemFont",
+          "SF Pro Text",
+          "Segoe UI",
+          "system-ui",
+          "sans-serif",
+        ],
+        headline: [
+          "Hanken Grotesk",
+          "Inter",
+          "-apple-system",
+          "BlinkMacSystemFont",
+          "system-ui",
+          "sans-serif",
+        ],
+        label: [
+          "Geist",
+          "Inter",
+          "ui-monospace",
+          "monospace",
+        ],
+        mono: [
+          "Geist",
+          "SF Mono",
+          "ui-monospace",
+          "JetBrains Mono",
+          "Menlo",
+          "Consolas",
+          "monospace",
+        ],
+      },
+      fontSize: {
+        xs: ["0.75rem", { lineHeight: "1rem" }],
+        sm: ["0.8125rem", { lineHeight: "1.25rem" }],
+        base: ["0.875rem", { lineHeight: "1.5rem" }],
+        lg: ["1rem", { lineHeight: "1.6", letterSpacing: "0.01em" }],
+        xl: ["1.125rem", { lineHeight: "1.75rem" }],
+        "2xl": ["1.375rem", { lineHeight: "1.75rem" }],
+        "3xl": ["1.75rem", { lineHeight: "2rem" }],
+        "4xl": ["2.25rem", { lineHeight: "2.5rem" }],
+        display: ["3rem", { lineHeight: "1.1", letterSpacing: "-0.02em" }],
+        headline: ["1.5rem", { lineHeight: "1.3" }],
+      },
+      fontWeight: {
+        light: "300",
+        normal: "400",
+        medium: "500",
+        semibold: "600",
+        bold: "700",
+      },
+      spacing: {
+        "4.5": "1.125rem",
+        "13": "3.25rem",
+        "15": "3.75rem",
+        "18": "4.5rem",
+        "22": "5.5rem",
+        "26": "6.5rem",
+      },
+      borderRadius: {
+        none: "var(--radius-none)",
+        xs: "var(--radius-xs)",
+        sm: "var(--radius-sm)",
+        md: "var(--radius-md)",
+        lg: "var(--radius-lg)",
+        xl: "var(--radius-xl)",
+        "2xl": "var(--radius-2xl)",
+        "3xl": "var(--radius-3xl)",
+        full: "var(--radius-full)",
+      },
+      boxShadow: {
+        sm: "var(--shadow-sm)",
+        md: "var(--shadow-md)",
+        lg: "var(--shadow-lg)",
+        xl: "var(--shadow-xl)",
+        inner: "var(--shadow-inner)",
+        glow: "var(--shadow-glow)",
+      },
+      zIndex: {
+        dropdown: "10",
+        sticky: "20",
+        overlay: "30",
+        modal: "40",
+        popover: "50",
+        tooltip: "60",
+      },
+      keyframes: {
+        "fade-in": {
+          "0%": { opacity: "0" },
+          "100%": { opacity: "1" },
+        },
+        "fade-out": {
+          "0%": { opacity: "1" },
+          "100%": { opacity: "0" },
+        },
+        "slide-up": {
+          "0%": { opacity: "0", transform: "translateY(8px)" },
+          "100%": { opacity: "1", transform: "translateY(0)" },
+        },
+        "slide-down": {
+          "0%": { opacity: "0", transform: "translateY(-8px)" },
+          "100%": { opacity: "1", transform: "translateY(0)" },
+        },
+        "scale-in": {
+          "0%": { opacity: "0", transform: "scale(0.96)" },
+          "100%": { opacity: "1", transform: "scale(1)" },
+        },
+      },
+      animation: {
+        "fade-in": "fade-in 200ms var(--ease-standard, cubic-bezier(0.4, 0, 0.2, 1))",
+        "fade-out": "fade-out 200ms var(--ease-standard, cubic-bezier(0.4, 0, 0.2, 1))",
+        "slide-up": "slide-up 200ms var(--ease-emphasized, cubic-bezier(0.2, 0, 0, 1))",
+        "slide-down": "slide-down 200ms var(--ease-emphasized, cubic-bezier(0.2, 0, 0, 1))",
+        "scale-in": "scale-in 200ms var(--ease-emphasized, cubic-bezier(0.2, 0, 0, 1))",
+      },
+      transitionTimingFunction: {
+        standard: "cubic-bezier(0.4, 0.0, 0.2, 1)",
+        emphasized: "cubic-bezier(0.2, 0.0, 0, 1)",
+        decelerate: "cubic-bezier(0.0, 0.0, 0.2, 1)",
+        accelerate: "cubic-bezier(0.4, 0.0, 1, 1)",
+      },
+    },
+  },
+  plugins: [],
+} satisfies Config;

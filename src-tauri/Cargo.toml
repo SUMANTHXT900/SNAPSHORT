@@ -1,0 +1,53 @@
+[package]
+name = "snapshort"
+version = "1.0.0"
+description = "Local-first LLM context packaging tool"
+authors = ["SAI SUMANTH"]
+edition = "2021"
+rust-version = "1.77"
+
+[lib]
+name = "snapshort_lib"
+crate-type = ["staticlib", "cdylib", "rlib"]
+
+[build-dependencies]
+tauri-build = { version = "2", features = [] }
+
+[dependencies]
+tauri = { version = "2", features = [] }
+tauri-plugin-dialog = "2"
+tauri-plugin-fs = "2"
+tauri-plugin-opener = "2"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+
+# Snapshot Engine
+walkdir = "2"
+ignore = "0.4"
+rayon = "1"
+crossbeam-channel = "0.5"
+parking_lot = "0.12"
+camino = "1"
+bstr = "1"
+encoding_rs = "0.8"
+content_inspector = "0.2"
+blake3 = "1"
+uuid = { version = "1", features = ["v4"] }
+chrono = { version = "0.4", features = ["serde"] }
+directories = "6"
+tempfile = "3"
+thiserror = "2"
+anyhow = "1"
+
+# Token estimation
+
+
+# Logging
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }
+tauri-plugin-process = "2"
+
+[features]
+
+[target.'cfg(not(any(target_os = "android", target_os = "ios")))'.dependencies]
+tauri-plugin-updater = "2"
